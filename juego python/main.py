@@ -1,14 +1,17 @@
 import pygame
+import constantes
 
-#inicializar
+#!inicializar
 pygame.init()
 
-#tamano(px), ancho - alto
-width = 800
-height = 600
 
-#display, mostramos la ventana
-ventana = pygame.display.set_mode((width,height))
+#!display, mostramos la ventana
+
+ventana = pygame.display.set_mode((constantes.ANCHO_VENTANA,
+                                    constantes.ALTO_VENTANA))# traemos variables de tamano del archivo "constante"
+
+#!nombre ventana
+pygame.display.set_caption("Jogo bonito")
 
 #!loop de ejecucion
 run = True
