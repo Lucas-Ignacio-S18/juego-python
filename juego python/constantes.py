@@ -9,7 +9,13 @@ ALTO_VENTANA = 780
 ANCHO_PJ = 10
 ALTO_PJ = 10
 COLOR_PJ = (40,60,85) #?color azul marino(90,50,255)
-ESCALA_PJ = 0.4
+ESCALA_PJ = 2.5
+
+#! NPC
+ANCHO_NPC = 10
+ALTO_NPC = 10
+COLOR_NPC = (40,60,85) #?color azul marino(90,50,255)
+ESCALA_NPC = 0.8
 
 #! VELOCIDAD
 VELOCIDAD = 5   # pixeles/s

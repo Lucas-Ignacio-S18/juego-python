@@ -3,6 +3,7 @@ import pygame
 import constantes
 from personaje import Personaje
 
+
 #!--- inicializar ---
 pygame.init()
 #! --- display, mostramos la ventana ---
@@ -23,7 +24,7 @@ def escalar_img(image,scale):
 animacion = []
 for i in range(9):
     #Cambiamos el numero de imagen por i del For
-    img = pygame.image.load(f"juego python//assets//img///personajes//player_main//caminata0{i}.png") 
+    img = pygame.image.load(f"juego python//assets//img//personajes//player_main//caminata0{i}.png") 
     img = escalar_img(img, constantes.ESCALA_PJ)
     animacion.append(img)
 
@@ -32,8 +33,9 @@ for i in range(9):
 # #escala del tamaño del pj en %
 # player_image = escalar_img(player_image, constantes.ESCALA_PJ)
 
+
 #!Traemos la clase PJ y le asiganmos la ubicacion
-jugador = Personaje(250,350, animacion)
+jugador = Personaje(100,200, animacion)
 
 
 #variables de movimiento
