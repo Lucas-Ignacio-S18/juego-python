@@ -1,5 +1,10 @@
 
 #!tamano(px), ancho - alto
-#width - height
+#! VENTANA
 ANCHO_VENTANA = 1020
 ALTO_VENTANA = 780
+
+#! PERSONAJE
+ANCHO_PJ = 60
+ALTO_PJ = 120
+COLOR_PJ = (0,0,255)
