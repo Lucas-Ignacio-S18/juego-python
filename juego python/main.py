@@ -11,11 +11,29 @@ ventana = pygame.display.set_mode((constantes.ANCHO_VENTANA,
 #todo -- nombre ventana --
 pygame.display.set_caption("Jogo bonito")
 
+
+#todo -Animacion-
+
+def escalar_img(image,scale):
+    w = image.get_width()
+    h = image.get_height()
+    nueva_imagen = pygame.transform.scale(image,(w*scale, h*scale))
+    return nueva_imagen
+
+animacion = []
+for i in range(9):
+    #Cambiamos el numero de imagen por i del For
+    img = pygame.image.load(f"juego python//assets//img///personajes//player_main//caminata0{i}.png") 
+    img = escalar_img(img, constantes.ESCALA_PJ)
+    animacion.append(img)
+
 #todo --imagen--
-player_image = pygame.image.load("assets/img//personajes/player_main/caminata00.png")
+# player_image = pygame.image.load("juego python//assets//img///personajes//player_main//caminata00.png")
+# #escala del tamaño del pj en %
+# player_image = escalar_img(player_image, constantes.ESCALA_PJ)
 
 #!Traemos la clase PJ y le asiganmos la ubicacion
-jugador = Personaje(250,350, player_image)
+jugador = Personaje(250,350, animacion)
 
 
 #variables de movimiento
@@ -50,8 +68,10 @@ while run == True:
     if mover_arriba == True:
         delta_y = -constantes.VELOCIDAD 
     
-    #mover jugador
+    #todo --mover jugador--
     jugador.movimiento(delta_x, delta_y)
+    jugador.update()
+
 
     #todo --llamamos a la funcion jugador--
     jugador.dibujar(ventana)
