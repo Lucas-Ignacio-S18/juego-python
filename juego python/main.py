@@ -1,27 +1,62 @@
+import os
 import pygame
 import constantes
 from personaje import Personaje
 
-#Traemos la clase PJ y le asiganmos la ubicacion
-jugador = Personaje(250,350)
-
 #!--- inicializar ---
 pygame.init()
-
 #! --- display, mostramos la ventana ---
 ventana = pygame.display.set_mode((constantes.ANCHO_VENTANA,
                                     constantes.ALTO_VENTANA))# traemos variables de tamano del archivo "constante"
-
-#! --- nombre ventana ---
+#todo -- nombre ventana --
 pygame.display.set_caption("Jogo bonito")
+
+#todo --imagen--
+player_image = pygame.image.load("assets/img//personajes/player_main/caminata00.png")
+
+#!Traemos la clase PJ y le asiganmos la ubicacion
+jugador = Personaje(250,350, player_image)
+
+
+#variables de movimiento
+mover_arriba = False
+mover_abajo = False
+mover_izquierda = False
+mover_derecha = False
+
+#todo --fps--
+fps = pygame.time.Clock()
 
 #!--- loop de ejecucion ---
 run = True
 while run == True:
 
+    #todo -- FPS --
+    fps.tick(constantes.FPS)
+
+    #todo -- Color de fondo --
+    ventana.fill(constantes.COLOR_BG)
+
+    #todo -- Movimiento del jugador --
+    delta_x = 0
+    delta_y = 0
+
+    if mover_derecha == True:
+        delta_x = constantes.VELOCIDAD
+    if mover_izquierda == True:
+        delta_x = -constantes.VELOCIDAD  
+    if mover_abajo == True:
+        delta_y = constantes.VELOCIDAD 
+    if mover_arriba == True:
+        delta_y = -constantes.VELOCIDAD 
+    
+    #mover jugador
+    jugador.movimiento(delta_x, delta_y)
+
+    #todo --llamamos a la funcion jugador--
     jugador.dibujar(ventana)
 
-    # event.get: entrega lista de todos los eventos que toma en el juego(ej. un click) 
+    #? event.get: entrega lista de todos los eventos que toma en el juego(ej. un click) 
 
     #todo --CIERRE DE JUEGO--
     for event in pygame.event.get():
@@ -29,16 +64,27 @@ while run == True:
             run = False  #!Cerramos ventana
 
     #todo --TECLAS/movimientos--
-    #KEYDOWN: reconocer cuando se oprime una tecla
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_a: #Key_(Tecla "a")
-            print("Izquierda")
-        if event.key == pygame.K_d: 
-            print("Derecha")
-        if event.key == pygame.K_w: 
-            print("Arriba")
-        if event.key == pygame.K_s: 
-            print("Abajo")
+        #KEYDOWN: reconocer cuando se oprime una tecla
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_a: #Key_(Tecla "a")
+                mover_izquierda = True
+            if event.key == pygame.K_d: 
+                mover_derecha = True
+            if event.key == pygame.K_w: 
+                mover_arriba = True
+            if event.key == pygame.K_s: 
+                mover_abajo = True
+
+        #KEYDOWN: reconocer cuando se suelta una tecla
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_a: #Key_(Tecla "a")
+                mover_izquierda = False
+            if event.key == pygame.K_d: 
+                mover_derecha = False
+            if event.key == pygame.K_w: 
+                mover_arriba = False
+            if event.key == pygame.K_s: 
+                mover_abajo = False
 
 
 
